@@ -7,7 +7,7 @@ import sys
 # Our experiment used POOL_SIZE = 40
 POOL_SIZE = 8
 
-MEASUREMENTS_PER_TIMER = 10
+MEASUREMENTS_PER_TIMER = 100
 TIMERS = 8
 
 def run_subprocess(command, working_dir='.', expected_returncode=0):
