@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
     {
         goto ossl_error;
     }
-    ret = SSL_CTX_set1_groups_list(ssl_ctx, "p256_kyber512_90s");
+    ret = SSL_CTX_set1_groups_list(ssl_ctx, "p256_kyber90s512");
     if (ret != 1)
     {
         goto ossl_error;
