@@ -7,7 +7,7 @@ import sys
 # Our experiment used POOL_SIZE = 40
 POOL_SIZE = 8
 
-MEASUREMENTS_PER_TIMER = 100
+MEASUREMENTS_PER_TIMER = 500
 TIMERS = 8
 
 def run_subprocess(command, working_dir='.', expected_returncode=0):
@@ -87,7 +87,14 @@ for latency_ms in ['2.684ms', '15.458ms', '39.224ms', '97.73ms']:
 
     with open('data/{}_{}ms.csv'.format(sig_alg, rtt_str),'w') as out:
         csv_out=csv.writer(out)
-        for pkt_loss in [0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5]:
+        for pkt_loss in [0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3]:
+            change_qdisc('cli_ns', 'cli_ve', pkt_loss, delay=latency_ms)
+            change_qdisc('srv_ns', 'srv_ve', pkt_loss, delay=latency_ms)
+            result = run_timers(sig_alg, timer_pool)
+            result.insert(0, pkt_loss)
+            csv_out.writerow(result)
+
+        for pkt_loss in range(4, 21):
             change_qdisc('cli_ns', 'cli_ve', pkt_loss, delay=latency_ms)
             change_qdisc('srv_ns', 'srv_ve', pkt_loss, delay=latency_ms)
             result = run_timers(sig_alg, timer_pool)
