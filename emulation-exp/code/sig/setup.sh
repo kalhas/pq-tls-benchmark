@@ -34,7 +34,7 @@ ${OPENSSL} req -new -newkey ec:prime256v1.pem -keyout ${NGINX_CONF_DIR}/ecdsap25
 ${OPENSSL} x509 -req -in ${NGINX_CONF_DIR}/ecdsap256_server.csr -out ${NGINX_CONF_DIR}/ecdsap256_server.crt -CA ${NGINX_CONF_DIR}/ecdsap256_CA.crt -CAkey ${NGINX_CONF_DIR}/ecdsap256_CA.key -CAcreateserial -days 365
 
 ## Generate all other certs
-for SIG in "dilithium2" "dilithium3" "dilithium4" "falcon512" "falcon1024" "rainbowIaclassic"  "p256_dilithium2"  "p384_dilithium3"  "p521_dilithium4" "p256_falcon512"  "p521_falcon1024" "p256_rainbowIaclassic";
+for SIG in "dilithium2" "dilithium3" "dilithium4" "falcon512" "falcon1024" "rainbowIaclassic"  "p256_dilithium2"  "p256_dilithium3"  "p384_dilithium4" "p256_falcon512"  "p521_falcon1024" "p256_rainbowIaclassic";
 do
     # generate CA key and cert
     ${OPENSSL} req -x509 -new -newkey ${SIG} -keyout ${NGINX_CONF_DIR}/${SIG}_CA.key -out ${NGINX_CONF_DIR}/${SIG}_CA.crt -nodes -subj "/CN=OQS test ${SIG} CA" -days 365 -config ${OPENSSL_CNF}
