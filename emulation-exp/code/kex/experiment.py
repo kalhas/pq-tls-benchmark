@@ -82,7 +82,8 @@ for latency_ms in ['2.684ms', '15.458ms', '39.224ms', '97.73ms']:
     rtt_str = get_rtt_ms()
 
     for kex_alg in ["kyber512", "kyber768", "kyber1024", "kyber90s512", "kyber90s768", "kyber90s1024", "p256_kyber512","p384_kyber768", "p521_kyber1024",
-                     "p256_kyber90s512", "p384_kyber90s768", "p521_kyber90s1024", "p256_ntru_hps2048509", "p384_ntru_hps2048677", "p521_ntru_hps4096821",
+                     "p256_kyber90s512", "p384_kyber90s768", "p521_kyber90s1024", "ntru_hps2048509", "ntru_hps2048677", "ntru_hps4096821",
+                      "ntru_hrss701", "p256_ntru_hps2048509", "p384_ntru_hps2048677", "p521_ntru_hps4096821",
                       "p384_ntru_hrss701", "lightsaber", "saber", "firesaber", "p256_lightsaber", "p384_saber", "p521_firesaber", "prime256v1"]:
         with open('data/{}_{}ms.csv'.format(kex_alg, rtt_str),'w') as out:
             #each line contains: pkt_loss, observations
